@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            font-family: arial;
+        }
+
+        input[type = text] {
+            width: 70%;
+            margin: 10px 5px 10px 0;
+            height: 25px;
+            padding-left: 5px;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+        }
+
+        input[type = range] {
+            width: 100%;
+        }
+
+        input {
+            display: inline;
+        }
+
+        input[type = color] {
+            border: none;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            background: white;
+            height: 31px;
+            transform: translateY(5px);
+        }
+
+        .main-content {
+            padding:  20px 30px;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            /* align-items: center; */
+            
+        }
+
+        /* ::placeholder {
+            padding: 5px;
+        } */
+
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <h1>HEX GRADIENT</h1>
+        <input type="text" id="color1" class="color_choose" placeholder="Couleur hex 1"> <br>
+        <input type="text" id="color2" class="color_choose" placeholder="Couleur hex 2"><br>
+        <p class="resultat"></p>
+        <input type="range" id="colorRange" min="0" max="360">
+    </div>
+    
+
+    <script>
+
+        let color1 = 'FFF';
+        let color2 = 'FFF';
+        let colorAngle = 0;
+
+
+        document.querySelectorAll('.color_choose').forEach(input => {
+            input.addEventListener('change', () => {
+                if(input.getAttribute('id') == 'color1') {
+                    color1 = input.value;
+                    color1 = color1.replace(/[!@#$%^&*]/g, "");
+                    document.querySelector('input#input_color1').setAttribute('value', '#'+color1);
+                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
+                }
+
+                if(input.getAttribute('id') == 'color2') {
+                    color2 = input.value;
+                    color2 = color2.replace(/[!@#$%^&*]/g, "");
+                    document.querySelector('input#input_color2').setAttribute('value', '#'+color2);
+                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
+                }
+            }) 
+        })
+
+        document.querySelectorAll('input[type = color]').forEach(input => {
+            input.addEventListener('change', () => {
+                if(input.getAttribute('id') == 'input_color1') {
+                    color1 = input.value;
+                    document.querySelector('input#color1').value = color1;
+                    color1 = color1.replace(/[!@#$%^&*]/g, "");
+                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
+                }
+
+                if(input.getAttribute('id') == 'input_color2') {
+                    color2 = input.value;
+                    document.querySelector('input#color2').value = color2;
+                    color2 = color2.replace(/[!@#$%^&*]/g, "");
+                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
+                }
+            })
+        })
+
+        document.querySelector('#colorRange').addEventListener('change', () => {
+            let colorAngle = document.querySelector('#colorRange').value;
+            document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+        })
+
+        document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
+        document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
+
+        
+    </script>
+</body>
+</html>
