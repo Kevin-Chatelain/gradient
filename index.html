@@ -96,25 +96,6 @@
             }) 
         })
 
-        document.querySelectorAll('input[type = color]').forEach(input => {
-            input.addEventListener('change', () => {
-                if(input.getAttribute('id') == 'input_color1') {
-                    color1 = input.value;
-                    document.querySelector('input#color1').value = color1;
-                    color1 = color1.replace(/[!@#$%^&*]/g, "");
-                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
-                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
-                }
-
-                if(input.getAttribute('id') == 'input_color2') {
-                    color2 = input.value;
-                    document.querySelector('input#color2').value = color2;
-                    color2 = color2.replace(/[!@#$%^&*]/g, "");
-                    document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
-                    document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
-                }
-            })
-        })
 
         document.querySelector('#colorRange').addEventListener('change', () => {
             let colorAngle = document.querySelector('#colorRange').value;
