@@ -81,7 +81,6 @@
                 if(input.getAttribute('id') == 'color1') {
                     color1 = input.value;
                     color1 = color1.replace(/[!@#$%^&*]/g, "");
-                    document.querySelector('input#input_color1').setAttribute('value', '#'+color1);
                     document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
                     document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
                 }
@@ -89,7 +88,6 @@
                 if(input.getAttribute('id') == 'color2') {
                     color2 = input.value;
                     color2 = color2.replace(/[!@#$%^&*]/g, "");
-                    document.querySelector('input#input_color2').setAttribute('value', '#'+color2);
                     document.body.style.backgroundImage = `linear-gradient(${colorAngle}deg, #${color1}, #${color2})`;
                     document.querySelector('.resultat').innerText = `Couleur 1 : ${color1}, Couleur 2 : ${color2}`;
                 }
